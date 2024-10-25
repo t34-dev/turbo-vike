@@ -1,17 +1,23 @@
-// utils/api.ts
-import { debounce } from "lodash-es";
+import { debounce, DebouncedFunc } from "lodash-es";
 
-const BASE_URL = import.meta.env.PROD ? "https://jsonplaceholder.typicode.com" : "http://localhost:3000/placeholder";
+const CACHE_TIME = 5 * 60 * 1000; // 5 минут в миллисекундах
 
-// Кэш для запросов
-const cache = new Map();
+interface CachedData<T> {
+  data: T;
+  timestamp: number;
+}
 
-// Создаем обычную функцию для запросов
-const fetchData = async (endpoint: string) => {
-  // Проверяем кэш
+const cache = new Map<string, CachedData<unknown>>();
+
+async function fetchData<T>(endpoint: string): Promise<T> {
   const cacheKey = endpoint;
+  const now = Date.now();
+
   if (cache.has(cacheKey)) {
-    return cache.get(cacheKey);
+    const cachedData = cache.get(cacheKey) as CachedData<T>;
+    if (now - cachedData.timestamp < CACHE_TIME) {
+      return cachedData.data;
+    }
   }
 
   const url = import.meta.env.SSR ? `https://jsonplaceholder.typicode.com${endpoint}` : `/placeholder${endpoint}`;
@@ -19,17 +25,18 @@ const fetchData = async (endpoint: string) => {
   const response = await fetch(url);
   if (!response.ok) throw new Error("API Error");
 
-  const data = await response.json();
-  // Сохраняем в кэш
-  cache.set(cacheKey, data);
+  const data: T = await response.json();
+
+  cache.set(cacheKey, { data, timestamp: now });
 
   return data;
-};
+}
 
-export const api = {
-  // Для SSR используем обычную функцию
-  get: import.meta.env.SSR
-    ? fetchData
-    : // Для клиента используем debounce
-      debounce(fetchData, 300),
+type ApiFunction = <T>(endpoint: string) => Promise<T>;
+
+// Создаем дебаунсированную версию функции с правильным типом
+const debouncedFetchData: ApiFunction = debounce(<T>(endpoint: string) => fetchData<T>(endpoint), 300) as ApiFunction;
+
+export const api: { get: ApiFunction } = {
+  get: import.meta.env.SSR ? fetchData : debouncedFetchData,
 };

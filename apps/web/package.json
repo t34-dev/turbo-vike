@@ -2,9 +2,10 @@
   "name": "web",
   "private": true,
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview",
+    "clean": "shx rm -rf ./**/*.build-*.mjs",
+    "dev": "npm run clean && vite",
+    "build": "npm run clean && vite build",
+    "preview": "npm run clean && vite preview",
     "lint": "eslint ."
   },
   "dependencies": {
@@ -30,6 +31,7 @@
     "globals": "^15.11.0",
     "prettier": "^3.3.3",
     "sass-embedded": "^1.80.4",
+    "shx": "^0.3.4",
     "typescript": "^5.6.3",
     "typescript-eslint": "^8.10.0",
     "vike": "^0.4.199",
