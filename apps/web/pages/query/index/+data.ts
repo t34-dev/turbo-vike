@@ -1,13 +1,13 @@
 import type { Todo, TodoMinimal } from "../types";
 import { useConfig } from "vike-react/useConfig";
+import { api } from "../../../utils/api";
 
 export type Data = Awaited<ReturnType<typeof data>>;
 
 export const data = async () => {
   const config = useConfig();
 
-  const response = await fetch("https://jsonplaceholder.typicode.com/todos/1");
-  const todoData = (await response.json()) as Todo;
+  const todoData = (await api.get("/todos/1")) as Todo;
 
   config({
     title: `Todo: ${todoData.title}`,

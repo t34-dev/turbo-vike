@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useStore } from "../../../store";
 import type { Data } from "./+data";
 import type { Todo } from "../types";
+import { api } from "../../../utils/api";
 
 export default function Page() {
   const initialData = useData<Data>();
@@ -13,15 +14,10 @@ export default function Page() {
   console.log("initialData", initialData);
   const { data, isLoading } = useQuery<Todo>({
     queryKey: ["todos"],
-    queryFn: async () => {
-      console.log("SENDING REQUEST...");
-      const res = await fetch("https://jsonplaceholder.typicode.com/todos/1");
-      return res.json();
-    },
+    queryFn: () => api.get("/todos/1"),
     initialData,
     staleTime: 1000 * 60,
   });
-
   return (
     <div className="p-4">
       <h1 className="text-2xl font-bold mb-4">React Query + Zustand</h1>
