@@ -12,7 +12,7 @@ export function Link({ href, children }: { href: string; children: string }) {
   const normalizedHref = href.replace(/\/+$/, "");
   const isActive = normalizedHref === normalizedPathname;
 
-  if (locale !== "en") {
+  if (locale && locale !== "en") {
     href = `/${locale}${href}`;
   }
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {

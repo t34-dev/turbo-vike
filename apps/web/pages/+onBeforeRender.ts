@@ -17,12 +17,6 @@ export const onBeforeRender: OnBeforeRenderAsync = async (pageContext): ReturnTy
     const response = await fetch("https://jsonplaceholder.typicode.com/todos");
     const todos: Todo[] = await response.json();
 
-    console.log("onBeforeRender FULL INFO:", {
-      locale,
-      todosCount: todos.length,
-      pageContextBefore: pageContext,
-    });
-
     // Возвращаем обновленный контекст
     return {
       pageContext: {

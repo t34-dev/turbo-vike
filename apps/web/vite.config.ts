@@ -4,11 +4,12 @@ import react from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
 import vike from "vike/plugin";
 import embedded from "sass-embedded";
+import mdx from "@mdx-js/rollup";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig({
-  plugins: [vike({}), react({})],
+  plugins: [vike({}), react({}), mdx()],
   resolve: {
     alias: {
       "@": resolve(__dirname, "./"),

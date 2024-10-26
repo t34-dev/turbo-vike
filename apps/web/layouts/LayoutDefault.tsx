@@ -18,7 +18,7 @@ export default function LayoutDefault({ children }: { children: React.ReactNode 
       <div
         style={{
           display: "flex",
-          maxWidth: 900,
+          maxWidth: 1900,
           margin: "auto",
         }}
       >
@@ -30,6 +30,7 @@ export default function LayoutDefault({ children }: { children: React.ReactNode 
           <Link href="/login">Login</Link>
           <Link href="/query">Query</Link>
           <Link href="/lang">Lang</Link>
+          <Link href="/docs">Docs</Link>
         </Sidebar>
         <Content>{children}</Content>
       </div>
