@@ -1,6 +1,6 @@
-import type { Todo, TodoMinimal } from "../types";
 import { useConfig } from "vike-react/useConfig";
-import { api } from "../../../utils/api";
+import { api } from "@/utils/api";
+import { Todo } from "@/pages/query/types";
 
 export type Data = Awaited<ReturnType<typeof data>>;
 
@@ -16,9 +16,3 @@ export const data = async () => {
   // Минимизируем данные если нужно
   return todoData;
 };
-
-// Опционально: функция минимизации данных
-function minimize(todo: Todo): TodoMinimal {
-  const { id, title } = todo;
-  return { id, title };
-}

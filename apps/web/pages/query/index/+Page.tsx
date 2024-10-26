@@ -1,17 +1,16 @@
 import React from "react";
 import { useData } from "vike-react/useData";
 import { useQuery } from "@tanstack/react-query";
-import { useStore } from "../../../store";
-import type { Data } from "./+data";
-import type { Todo } from "../types";
-import { api } from "../../../utils/api";
+import { api } from "@/utils/api";
+import { useStore } from "@/store";
+import { Todo } from "@/pages/query/types";
+import { Data } from "@/pages/query/index/+data";
 
 export default function Page() {
   const initialData = useData<Data>();
   const count = useStore((state) => state.count);
   const increment = useStore((state) => state.increment);
 
-  console.log("initialData", initialData);
   const { data, isLoading } = useQuery<Todo>({
     queryKey: ["todos"],
     queryFn: () => api.get("/todos/1"),
