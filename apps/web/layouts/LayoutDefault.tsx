@@ -25,6 +25,7 @@ export default function LayoutDefault({ children }: { children: React.ReactNode 
           <Link href="/star-wars">Data Fetching</Link>
           <Link href="/login">Login</Link>
           <Link href="/query">Query</Link>
+          <Link href="/lang">Lang</Link>
         </Sidebar>
         <Content>{children}</Content>
       </div>
