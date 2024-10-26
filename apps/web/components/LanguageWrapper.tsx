@@ -1,22 +1,20 @@
 // components/LanguageWrapper.tsx
 import React, { useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { usePageContext } from "vike-react/usePageContext";
 
-interface LanguageWrapperProps {
-  children: React.ReactNode;
-}
-
-export function LanguageWrapper({ children }: LanguageWrapperProps) {
-  const pageContext = usePageContext();
+export function LanguageWrapper({ children }: { children: React.ReactNode }) {
   const { i18n } = useTranslation();
-  const lang = pageContext.routeParams?.lang || "en";
 
   useEffect(() => {
-    if (i18n.language !== lang) {
-      i18n.changeLanguage(lang);
+    const urlParts = window.location.pathname.split("/");
+    const langFromUrl = urlParts[1];
+    const supportedLangs = ["en", "ru"];
+    const locale = supportedLangs.includes(langFromUrl) ? langFromUrl : "en";
+
+    if (i18n.language !== locale) {
+      i18n.changeLanguage(locale);
     }
-  }, [lang, i18n]);
+  }, [i18n]);
 
   return <>{children}</>;
 }

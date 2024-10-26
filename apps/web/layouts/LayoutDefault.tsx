@@ -6,6 +6,8 @@ import logoUrl from "../assets/logo.svg";
 import { Link } from "../components/Link.js";
 import { RootProvider } from "../components/providers/root-provider";
 import { SignedIn, UserButton, useUser } from "@clerk/clerk-react";
+import { LanguageSwitcher } from "@/components/LanguageSwitcher";
+import { useTranslation } from "react-i18next";
 
 export default function LayoutDefault({ children }: { children: React.ReactNode }) {
   return (
@@ -34,6 +36,7 @@ export default function LayoutDefault({ children }: { children: React.ReactNode 
 }
 
 const Header = () => {
+  const { i18n, ready } = useTranslation();
   const { user } = useUser();
   return (
     <div className={s.header}>
@@ -41,6 +44,11 @@ const Header = () => {
         <Link href="/">LOGO</Link>
       </div>
       <div className={s.header__user}>
+        <div className="mb-4">
+          <p>i18n language: {i18n.language}</p>
+          <LanguageSwitcher />
+          {!ready && <div>Loading...</div>}
+        </div>
         {!user ? (
           <Link href="/login">Login</Link>
         ) : (

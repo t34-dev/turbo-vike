@@ -19,7 +19,8 @@
     ],
     "types": [
       "vite/client",
-      "vike-react"
+      "vike-react",
+      "./types/vike"
     ],
     "jsx": "preserve",
     "jsxImportSource": "react",

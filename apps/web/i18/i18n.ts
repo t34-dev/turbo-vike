@@ -23,6 +23,11 @@ if (!i18nInstance.isInitialized) {
 
       backend: {
         loadPath,
+        crossDomain: true,
+        customHeaders: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
       },
 
       detection: {
@@ -37,6 +42,9 @@ if (!i18nInstance.isInitialized) {
 
       react: {
         useSuspense: false,
+        bindI18n: "languageChanged loaded",
+        bindI18nStore: "added removed",
+        transEmptyNodeValue: "",
       },
     });
 }
