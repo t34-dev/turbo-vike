@@ -5,8 +5,10 @@ import { api } from "@/utils/api";
 import { useStore } from "@/store";
 import { Todo } from "@/pages/query/types";
 import { Data } from "@/pages/query/index/+data";
+import { useTypedTranslation } from "@/i18/useTypedTranslation";
 
 export default function Page() {
+  const { t, formatDate, formatNumber, hasTranslation } = useTypedTranslation();
   const initialData = useData<Data>();
   const count = useStore((state) => state.count);
   const increment = useStore((state) => state.increment);
@@ -17,6 +19,7 @@ export default function Page() {
     initialData,
     staleTime: 1000 * 60,
   });
+
   return (
     <div className="p-4">
       <h1 className="text-2xl font-bold mb-4">React Query + Zustand</h1>
@@ -41,6 +44,26 @@ export default function Page() {
             </div>
           </div>
         )}
+      </div>
+      <hr />
+
+      <div>
+        {/* Типизированный перевод */}
+        <h1>
+          {t("common.welcome", {
+            defaultValue: "Welcome!",
+            params: { name: "John" },
+          })}
+        </h1>
+
+        {/* Форматирование даты с учетом локали */}
+        <p>Date: {formatDate(new Date())}</p>
+
+        {/* Форматирование числа с учетом локали */}
+        <p>Number: {formatNumber(1234567.89)}</p>
+
+        {/* Проверка наличия перевода */}
+        {hasTranslation("common.buttons.submit") && <button>{t("common.buttons.submit")}</button>}
       </div>
     </div>
   );

@@ -8,5 +8,5 @@ export default {
   title: "My Vike App",
   description: "Demo showcasing Vike",
   extends: vikeReact,
-  passToClient: ["pageProps"],
+  passToClient: ["pageProps", "urlLogical", "locale"],
 } satisfies Config;

@@ -8,6 +8,8 @@ import { RootProvider } from "../components/providers/root-provider";
 import { SignedIn, UserButton, useUser } from "@clerk/clerk-react";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { useTranslation } from "react-i18next";
+import { usePageContext } from "vike-react/usePageContext";
+import { Switcher2 } from "@/components/Switcher2/Switcher2";
 
 export default function LayoutDefault({ children }: { children: React.ReactNode }) {
   return (
@@ -36,16 +38,20 @@ export default function LayoutDefault({ children }: { children: React.ReactNode 
 }
 
 const Header = () => {
-  const { i18n, ready } = useTranslation();
+  const {
+    pageProps: { locale },
+  } = usePageContext();
+  const { ready } = useTranslation();
   const { user } = useUser();
   return (
     <div className={s.header}>
       <div className={s.header__logo}>
         <Link href="/">LOGO</Link>
+        <Switcher2 />
       </div>
       <div className={s.header__user}>
         <div className="mb-4">
-          <p>i18n language: {i18n.language}</p>
+          <p>i18n language: {locale}</p>
           <LanguageSwitcher />
           {!ready && <div>Loading...</div>}
         </div>

@@ -1,23 +1,20 @@
 // pages/lang/+Page.tsx
 import React from "react";
 import { T } from "@/components/T/T";
-import { useTranslation } from "react-i18next";
+import { usePageContext } from "vike-react/usePageContext";
 
 export { Page };
 
-function Page(props: { locale?: string }) {
-  const { i18n, ready } = useTranslation();
-  const locale = props.locale || "—";
+function Page() {
+  const pageContext = usePageContext();
+  const locale = pageContext.pageProps.locale;
 
-  if (!ready) {
-    return <div>Loading translations...</div>;
-  }
-
+  console.log("pageContext", pageContext.pageProps);
   return (
     <div className="p-4">
       <div className="mb-4">
         <p>Current locale: {locale}</p>
-        <p>i18n language: {i18n.language}</p>
+        {/*<p>i18n language: {i18n.language}</p>*/}
       </div>
 
       <h1 className="text-2xl font-bold mb-4">

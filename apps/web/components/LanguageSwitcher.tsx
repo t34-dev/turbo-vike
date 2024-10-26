@@ -1,6 +1,6 @@
-// components/LanguageSwitcher.tsx
 import React from "react";
-import { useTranslation } from "react-i18next";
+import { useTypedTranslation } from "@/i18/useTypedTranslation";
+import { SupportedLang } from "@/i18/constants";
 
 const LANGUAGES = {
   en: "English",
@@ -8,20 +8,13 @@ const LANGUAGES = {
 } as const;
 
 export function LanguageSwitcher() {
-  const { i18n } = useTranslation();
-  const currentLang = i18n.language || "en";
-
-  const changeLang = (newLang: keyof typeof LANGUAGES) => {
-    const currentPath = window.location.pathname;
-    const pathWithoutLang = currentPath.replace(/^\/(en|ru)/, "");
-    const newPath = newLang === "en" ? pathWithoutLang : `/${newLang}${pathWithoutLang}`;
-    window.location.href = newPath || "/";
-  };
+  const { changeLocale, getCurrentLocale } = useTypedTranslation();
 
   return (
     <select
-      value={currentLang}
-      onChange={(e) => changeLang(e.target.value as keyof typeof LANGUAGES)}
+      value={getCurrentLocale()}
+      // onChange={(e) => changeLang(e.target.value as keyof typeof LANGUAGES)}
+      onChange={(e) => changeLocale(e.target.value as SupportedLang)}
       className="p-2 border rounded"
     >
       {Object.entries(LANGUAGES).map(([code, name]) => (
