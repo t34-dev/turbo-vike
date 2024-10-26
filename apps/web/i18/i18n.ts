@@ -5,9 +5,14 @@ import LanguageDetector from "i18next-browser-languagedetector";
 
 // Импортируем JSON файлы напрямую
 import common from "./locales/en/common.json";
+import common_ru from "./locales/ru/common.json";
 import default_ns from "./locales/en/default.json";
+import default_ns_ru from "./locales/ru/default.json";
 
-i18n
+// Создаем инстанс i18n если его еще нет
+const i18nInstance = i18n.createInstance();
+
+i18nInstance
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
@@ -16,13 +21,21 @@ i18n
         common: common,
         default: default_ns,
       },
+      ru: {
+        common: common_ru,
+        default: default_ns_ru,
+      },
     },
     fallbackLng: "en",
-    // Указываем все используемые пространства имен
     ns: ["common", "default"],
-    // Пространство имен по умолчанию
     defaultNS: "common",
     supportedLngs: ["en", "ru"],
+
+    // Для сохранения языка
+    detection: {
+      order: ["localStorage", "navigator"],
+      caches: ["localStorage"],
+    },
 
     interpolation: {
       escapeValue: false,
@@ -33,4 +46,4 @@ i18n
     },
   });
 
-export default i18n;
+export default i18nInstance;

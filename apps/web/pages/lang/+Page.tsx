@@ -4,7 +4,10 @@ import { TRANSLATION_KEYS } from "@/components/T/keys";
 import { useTranslation } from "react-i18next";
 
 export default function Page() {
-  const { i18n } = useTranslation();
+  const { i18n, t } = useTranslation();
+
+  console.log("Current language:", i18n.language);
+  console.log("Available resources:", i18n.services.resourceStore.data);
 
   return (
     <>
@@ -12,34 +15,34 @@ export default function Page() {
       <div>
         <select value={i18n.language} onChange={(e) => i18n.changeLanguage(e.target.value)}>
           <option value="en">English</option>
-          <option value="ru">Russia</option>
+          <option value="ru">Русский</option>
         </select>
       </div>
       <br />
       <hr />
       <p>
-        {/*// Простой случай*/}
-        <T k={TRANSLATION_KEYS.COMMON.AGREEMENT} default="I agree to terms" />
+        <T k="common:agreement" default="I agree to terms" />
       </p>
       <p>
-        {/*// С параметрами*/}
-        <T k={TRANSLATION_KEYS.COMMON.WELCOME} default="Welcome, {name}!" params={{ name: "John" }} />
+        <T k="common:welcome" default="Welcome, {{name}}!" params={{ name: "John" }} />
       </p>
       <p>
-        {/*// С HTML*/}
-        <T k={TRANSLATION_KEYS.COMMON.TERMS} default="Click <a href='/terms'>here</a>" html />
+        <T k="common:terms" default="Click <a href='/terms'>here</a>" html />
       </p>
       <p>
-        {/*// Со сложными компонентами*/}
-        <T k={TRANSLATION_KEYS.COMMON.AGREEMENT} default="I agree to the {terms} and {privacy}">
-          <a href="/terms" key="terms">
-            <T k={TRANSLATION_KEYS.COMMON.TERMS_LINK} default="Terms of Service" />
+        <T k="common:agreement" default="I agree to the {{terms}} and {{privacy}}">
+          <a href="/terms">
+            <T k="common:termsLink" default="Terms of Service" />
           </a>
-          <a href="/privacy" key="privacy">
-            <T k={TRANSLATION_KEYS.COMMON.PRIVACY_LINK} default="Privacy Policy" />
+          <a href="/privacy">
+            <T k="common:privacyLink" default="Privacy Policy" />
           </a>
         </T>
       </p>
+
+      <div>
+        <T k="default:sign_in" default="Sign in" />
+      </div>
     </>
   );
 }
