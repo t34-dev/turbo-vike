@@ -1,49 +1,44 @@
 // i18n.ts
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
+import HttpBackend from "i18next-http-backend";
 import LanguageDetector from "i18next-browser-languagedetector";
 
-// Импортируем JSON файлы напрямую
-import common from "./locales/en/common.json";
-import common_ru from "./locales/ru/common.json";
-import default_ns from "./locales/en/default.json";
-import default_ns_ru from "./locales/ru/default.json";
+const API_KEY = "t-3QIfqCSgEFu7-11RKoww";
+const loadPath = `https://api.i18nexus.com/project_resources/translations/{{lng}}/{{ns}}.json?api_key=${API_KEY}`;
 
-// Создаем инстанс i18n если его еще нет
+// Создаем инстанс если его еще нет
 const i18nInstance = i18n.createInstance();
 
-i18nInstance
-  .use(LanguageDetector)
-  .use(initReactI18next)
-  .init({
-    resources: {
-      en: {
-        common: common,
-        default: default_ns,
+if (!i18nInstance.isInitialized) {
+  i18nInstance
+    .use(HttpBackend)
+    .use(LanguageDetector)
+    .use(initReactI18next)
+    .init({
+      fallbackLng: "en",
+      ns: ["common", "default"],
+      defaultNS: "common",
+      supportedLngs: ["en", "ru"],
+
+      backend: {
+        loadPath,
       },
-      ru: {
-        common: common_ru,
-        default: default_ns_ru,
+
+      detection: {
+        order: ["path", "localStorage", "navigator"],
+        lookupFromPathIndex: 0,
+        caches: ["localStorage"],
       },
-    },
-    fallbackLng: "en",
-    ns: ["common", "default"],
-    defaultNS: "common",
-    supportedLngs: ["en", "ru"],
 
-    // Для сохранения языка
-    detection: {
-      order: ["localStorage", "navigator"],
-      caches: ["localStorage"],
-    },
+      interpolation: {
+        escapeValue: false,
+      },
 
-    interpolation: {
-      escapeValue: false,
-    },
-
-    react: {
-      useSuspense: false,
-    },
-  });
+      react: {
+        useSuspense: false,
+      },
+    });
+}
 
 export default i18nInstance;
