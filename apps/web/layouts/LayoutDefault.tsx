@@ -1,5 +1,6 @@
 import "./style.css";
 import s from "./index.module.scss";
+import "@rainbow-me/rainbowkit/styles.css";
 
 import React from "react";
 import logoUrl from "../assets/logo.svg";
