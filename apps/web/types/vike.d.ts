@@ -1,3 +1,5 @@
+import type { MDXComponents } from "mdx/types";
+
 // types/vike.d.ts
 declare global {
   namespace Vike {
@@ -13,8 +15,12 @@ declare global {
       pageProps: {
         locale: "en" | "ru";
         todos?: Todo[];
-        data?: { [p: string]: unknown };
+        metadata?: { [p: string]: unknown };
         content?: string;
+        MDXData?: MDXComponent;
+        Component?: MDXComponent;
+        compiledSource?: string;
+        mdxSource?: string;
       };
       urlLogical: string;
     }
