@@ -1,4 +1,4 @@
-import type { MDXComponents } from "mdx/types";
+import type { MDXComponents, MDXContent } from "mdx/types";
 
 // types/vike.d.ts
 declare global {
@@ -16,12 +16,9 @@ declare global {
         locale: "en" | "ru";
         todos?: Todo[];
         metadata?: { [p: string]: unknown };
-        content?: string;
-        MDXData?: MDXComponent;
-        Component?: MDXComponent;
         compiledSource?: string;
-        mdxSource?: string;
       };
+      ServerComponent: MDXContent;
       urlLogical: string;
     }
   }

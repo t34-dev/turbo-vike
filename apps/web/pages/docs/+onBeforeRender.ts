@@ -14,24 +14,23 @@ import fs from "fs";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 export const onBeforeRender: OnBeforeRenderAsync = async (pageContext): ReturnType<OnBeforeRenderAsync> => {
+  console.log("⭐ onBeforeRender START");
   const locale = pageContext.pageProps.locale;
 
   const { content: mdxSource, metadata } = await loadMDXFile();
-
-  // Компилируем MDX на сервере
   const { compiledSource } = await compileMDX(mdxSource);
+  const { Component } = await evaluateMDX1(compiledSource);
 
-  // Важно: выполняем первичный рендеринг на сервере
-  const { Component } = await evaluateMDX(compiledSource);
+  console.log("⭐ onBeforeRender END, Component exists:", !!Component);
 
   return {
     pageContext: {
       pageProps: {
         locale,
-        Component, // Уже готовый React компонент
-        compiledSource, // Для гидрации на клиенте
+        compiledSource,
         metadata,
       },
+      ServerComponent: Component,
     },
   };
 };
@@ -39,12 +38,12 @@ export const onBeforeRender: OnBeforeRenderAsync = async (pageContext): ReturnTy
 async function loadMDXFile(locale: string = "en"): Promise<{ content: string; metadata: { [p: string]: unknown } }> {
   const source = fs.readFileSync(resolve(__dirname, `./content/${locale}/index.mdx`), "utf8");
 
-  const { data: metadata, content } = matter(source, {
+  const { data: metadata, excerpt = "sex" } = matter(source, {
     excerpt: true,
     excerpt_separator: "---",
   });
 
-  return { content, metadata };
+  return { content: excerpt, metadata };
 }
 
 // Компиляция MDX в JavaScript
@@ -81,7 +80,7 @@ async function compileMDX(source: string) {
   }
 }
 // Выполнение скомпилированного MDX и создание React компонента
-async function evaluateMDX(compiledSource: string) {
+export async function evaluateMDX1(compiledSource: string) {
   try {
     const { default: Component } = await run(compiledSource, {
       ...runtime,
