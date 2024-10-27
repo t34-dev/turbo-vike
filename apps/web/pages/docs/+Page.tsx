@@ -1,16 +1,19 @@
-// +Page.tsx
-import React from "react";
+import React, { ComponentProps } from "react";
 import metaData from "./content/en/_meta.json";
 import { RenderNavigation } from "@/pages/docs/render";
 import s from "./Page.module.scss";
 import type { MDXComponents } from "mdx/types"; // правильный импорт типов
-import Content from "./content/en/index.mdx";
 import "@/styles/mdx.scss";
-import "@/styles/code.scss";
+import "@/styles/prism-one-dark.scss";
+import "@/styles/copy.scss";
 import { Counter } from "@/pages/index/Counter";
+import { useTypedTranslation } from "@/i18/useTypedTranslation";
+import { CodeBlock } from "@/components/CodeBlock";
+import { Language } from "@/components/CopyButton/i18n";
+import { usePageContext } from "vike-react/usePageContext";
 
 // Определяем компоненты с правильным типом
-const components: MDXComponents = {
+const componentsDefault: MDXComponents = {
   h1: ({ children, ...props }) => (
     <h1 className="text-3xl font-bold" {...props}>
       {children}
@@ -25,6 +28,20 @@ const components: MDXComponents = {
 };
 
 function Page() {
+  const {
+    pageProps: { content: Content },
+  } = usePageContext();
+  const { language } = useTypedTranslation();
+
+  const components: MDXComponents = {
+    ...componentsDefault,
+    pre: ({ children, ...props }: ComponentProps<"pre">) => (
+      <CodeBlock {...props} language={language as unknown as Language}>
+        {children}
+      </CodeBlock>
+    ),
+  };
+
   return (
     <div className={s.wrap}>
       <div className={s.wrap__left}>

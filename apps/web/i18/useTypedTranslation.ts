@@ -73,6 +73,9 @@ export function useTypedTranslation(ns?: Namespaces | Namespaces[]) {
       });
     },
 
+    language: i18n.language,
+    supportedLanguages: SUPPORTED_LANGS,
+
     getCurrentLocale: () => i18n.language,
 
     getAllTranslations: (namespace?: Namespaces) =>

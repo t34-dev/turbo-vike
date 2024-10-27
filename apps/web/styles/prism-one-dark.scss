@@ -1,0 +1,189 @@
+/* Основные стили для кода */
+pre[class*="language-"],
+code[class*="language-"] {
+  color: #abb2bf;
+  font-family: "Fira Code", "Fira Mono", Menlo, Consolas, monospace;
+  direction: ltr;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  line-height: 1.5;
+  tab-size: 2;
+  hyphens: none;
+  background: #282c34;
+  border-radius: 0.3em;
+}
+
+/* Контейнер кода */
+pre[class*="language-"] {
+  padding: 1em;
+  margin: 0.5em 0;
+  overflow: auto;
+  border-radius: 0.3em;
+}
+
+/* Токены */
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+  color: #5c6370;
+  font-style: italic;
+}
+
+.token.function {
+  color: #61afef;
+}
+
+.token.keyword {
+  color: #c678dd;
+}
+
+.token.string {
+  color: #98c379;
+}
+
+.token.number {
+  color: #d19a66;
+}
+
+.token.builtin {
+  color: #e5c07b;
+}
+
+.token.class-name {
+  color: #e5c07b;
+}
+
+.token.attr-name {
+  color: #d19a66;
+}
+
+.token.punctuation {
+  color: #abb2bf;
+}
+
+/* Нумерация строк */
+.line-number::before {
+  display: inline-block;
+  width: 1.8em;
+  text-align: right;
+  margin-right: 1em;
+  color: #5c6370;
+  content: attr(line);
+}
+
+/* Подсветка строк */
+.highlight-line {
+  background-color: rgba(255, 255, 255, 0.1);
+  margin: 0 -1em;
+  padding: 0 1em;
+  border-left: 2px solid #61afef;
+}
+
+/* Название языка */
+.code-language {
+  position: relative;
+  top: -0.8em;
+  right: -0.8em;
+  float: right;
+  font-size: 0.75em;
+  color: #5c6370;
+  background: #282c34;
+  border-radius: 0.3em;
+  padding: 0.2em 0.5em;
+}
+
+/* Кнопка копирования */
+.copy-button {
+  position: absolute;
+  top: 0.5em;
+  right: 0.5em;
+  padding: 0.3em 0.6em;
+  border: 1px solid #4b5263;
+  border-radius: 0.3em;
+  background: #282c34;
+  color: #abb2bf;
+  font-size: 0.8em;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+pre:hover .copy-button {
+  opacity: 1;
+}
+
+.copy-button:hover {
+  background: #3e4451;
+}
+
+/* Diffing */
+.token.deleted {
+  background-color: rgba(224, 108, 117, 0.2);
+}
+
+.token.inserted {
+  background-color: rgba(152, 195, 121, 0.2);
+}
+
+
+
+/* Контейнер для кода с относительным позиционированием */
+pre[class*="language-"] {
+  position: relative;
+}
+
+/* Стили для кнопки копирования */
+.code-copy-button {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+  line-height: 1;
+  color: #abb2bf;
+  background-color: #282c34;
+  border: 1px solid #3e4451;
+  border-radius: 0.25rem;
+  opacity: 0;
+  transition: opacity 0.1s ease, background-color 0.1s ease;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #3e4451;
+  }
+}
+
+/* Показываем кнопку при наведении на блок кода */
+pre[class*="language-"]:hover .code-copy-button {
+  opacity: 1;
+}
+
+/* Стили для состояния "скопировано" */
+.code-copy-button.copied {
+  background-color: #98c379;
+  color: #282c34;
+  border-color: #98c379;
+}
+
+/* Анимация для кнопки */
+.code-copy-button {
+  &.copying {
+    animation: pulse 0.5s ease-in-out;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+

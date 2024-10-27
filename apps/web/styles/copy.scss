@@ -1,0 +1,32 @@
+pre[class*="language-"] {
+  position: relative;
+
+  .copy-button {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    background: #2d2d2d;
+    border: 1px solid #444;
+    border-radius: 4px;
+    padding: 4px 8px;
+    font-size: 12px;
+    color: #ccc;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.3s;
+
+    &:hover {
+      background: #3d3d3d;
+    }
+  }
+
+  &:hover .copy-button {
+    opacity: 1;
+  }
+
+  .copy-button.copied {
+    background: #2ecc71;
+    color: white;
+    border-color: #27ae60;
+  }
+}

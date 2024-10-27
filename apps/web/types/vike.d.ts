@@ -12,7 +12,9 @@ declare global {
     interface PageContext {
       pageProps: {
         locale: "en" | "ru";
-        todos?: Todo[]; // Добавляем todos в pageProps
+        todos?: Todo[];
+        data?: { [p: string]: unknown };
+        content?: string;
       };
       urlLogical: string;
     }
