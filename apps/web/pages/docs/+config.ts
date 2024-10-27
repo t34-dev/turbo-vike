@@ -3,12 +3,10 @@ import type { Config } from "vike/types";
 export default {
   route: "/docs*",
   passToClient: ["locale", "pageProps"],
+  ssr: true,
   meta: {
     Page: {
-      env: { server: false, client: true }, // Важно! Включаем серверный рендеринг
-    },
-    "Page.server": {
-      env: { server: true, client: false },
+      env: { server: true, client: true },
     },
     ServerComponent: {
       env: { server: true, client: false },

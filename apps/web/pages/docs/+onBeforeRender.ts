@@ -10,11 +10,12 @@ import matter from "gray-matter";
 import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 import fs from "fs";
+import { isServer } from "@/utils/server";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 export const onBeforeRender: OnBeforeRenderAsync = async (pageContext): ReturnType<OnBeforeRenderAsync> => {
-  console.log("⭐ onBeforeRender START");
+  console.log("⭐ onBeforeRender START", "isServer:", isServer());
   const locale = pageContext.pageProps.locale;
 
   const { content: mdxSource, metadata } = await loadMDXFile();
@@ -38,12 +39,9 @@ export const onBeforeRender: OnBeforeRenderAsync = async (pageContext): ReturnTy
 async function loadMDXFile(locale: string = "en"): Promise<{ content: string; metadata: { [p: string]: unknown } }> {
   const source = fs.readFileSync(resolve(__dirname, `./content/${locale}/index.mdx`), "utf8");
 
-  const { data: metadata, excerpt = "sex" } = matter(source, {
-    excerpt: true,
-    excerpt_separator: "---",
-  });
+  // const { data: metadata, content } = matter(source);
 
-  return { content: excerpt, metadata };
+  return { content: source, metadata: {} };
 }
 
 // Компиляция MDX в JavaScript
@@ -61,10 +59,7 @@ async function compileMDX(source: string) {
             ignoreMissing: true,
             showLineNumbers: true,
             defaultLanguage: "typescript",
-            aliases: {
-              typescript: ["ts", "tsx"],
-              javascript: ["js", "jsx"],
-            },
+            aliases: {},
           },
         ],
       ],

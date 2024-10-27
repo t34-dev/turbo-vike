@@ -1,8 +1,9 @@
-import React, { ComponentProps, useState } from "react";
+import React, { ComponentProps, useEffect, useState } from "react";
 import { MDXProvider } from "@mdx-js/react";
 import { usePageContext } from "vike-react/usePageContext";
 import { useTypedTranslation } from "@/i18/useTypedTranslation";
 import metaData from "./content/en/_meta.json";
+import Component from "./content/en/index.mdx";
 import s from "./Page.module.scss";
 import "@/styles/mdx.scss";
 import "@/styles/prism-one-dark.scss";
@@ -22,38 +23,47 @@ const componentsDefault = {
 };
 
 export function Page() {
-  console.log("🔥 Page.server.tsx START");
+  console.log("🌐 Page.tsx START", 999999999999999999999999999);
   const { language } = useTypedTranslation();
-  const { ServerComponent } = usePageContext();
-  console.log("🔥 Page.server.tsx ServerComponent exists:", !!ServerComponent);
+  const {
+    pageProps: { compiledSource }, // Получаем из pageProps!
+    from,
+  } = usePageContext();
+  // const [ClientComponent, setClientComponent] = useState<typeof ClientComponent>(null);
+  const [MDXComponent, setMDXComponent] = useState<any>(null);
 
-  // Расширенные компоненты с CodeBlock
+  useEffect(() => {
+    if (compiledSource) {
+      setMDXComponent(() => Component);
+      // evaluateMDX1(compiledSource).then(() => {
+      //   setClientComponent(() => Component);
+      // });
+    }
+  }, [compiledSource]);
+
   const components = {
     ...componentsDefault,
-    // Обработка блоков кода с поддержкой всех фич
     pre: ({ children, ...props }: ComponentProps<"pre">) => (
-      <CodeBlock {...props} language={language as unknown as Language}>
+      <CodeBlock {...props} language={language as Language}>
         {children}
       </CodeBlock>
     ),
   };
 
-  console.log("onRenderClient 777777777777777777", !!ServerComponent);
+  // if (!ClientComponent) return null;
 
   return (
-    <>
-      <div className={s.wrap}>
-        <div className={s.wrap__left}>
-          <RenderNavigation meta={metaData} />
-        </div>
-        <div className={s.wrap__right}>
-          <div className="mdx-content">
-            <MDXProvider components={components}>
-              <ServerComponent />
-            </MDXProvider>
-          </div>
+    <div className={s.wrap}>
+      <div className={s.wrap__left}>
+        <RenderNavigation meta={metaData} />
+      </div>
+      <div className={s.wrap__right}>
+        <div className="mdx-content">
+          <MDXProvider components={components}>
+            <Component />
+          </MDXProvider>
         </div>
       </div>
-    </>
+    </div>
   );
 }

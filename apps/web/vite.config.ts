@@ -28,7 +28,6 @@ export default defineConfig({
             ignoreMissing: true,
             showLineNumbers: true,
             defaultLanguage: "typescript",
-            // Поддерживаемые опции:
             aliases: {}, // алиасы для языков
           },
         ],

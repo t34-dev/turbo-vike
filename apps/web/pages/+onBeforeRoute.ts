@@ -31,8 +31,6 @@ const onBeforeRoute: OnBeforeRouteSync = (pageContext): { pageContext: BeforeRou
     }
   }
 
-  console.log("onBeforeRoute::", { locale, urlLogical, urlPathname });
-
   return {
     pageContext: {
       pageProps: {
