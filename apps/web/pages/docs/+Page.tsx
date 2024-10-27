@@ -13,6 +13,9 @@ import { Language } from "@/components/CopyButton/i18n";
 import { RenderNavigation } from "@/pages/docs/render";
 import { Counter } from "@/pages/index/Counter";
 import { isServer } from "@/utils/server";
+import { run } from "@mdx-js/mdx";
+import * as runtime from "react/jsx-runtime";
+import { evaluateMDX1 } from "@/pages/docs/+onBeforeRender";
 
 // Базовые компоненты MDX
 const componentsDefault = {
@@ -31,16 +34,21 @@ export function Page() {
     pageProps: { compiledSource },
   } = pageContext;
 
-  // const [MDXComponent, setMDXComponent] = useState<any>(null);
-  //
-  // useEffect(() => {
-  //   if (compiledSource) {
-  //     setMDXComponent(() => ComponentX);
-  //     // evaluateMDX1(compiledSource).then(() => {
-  //     //   setClientComponent(() => Component);
-  //     // });
-  //   }
-  // }, [compiledSource]);
+  const [ClientComponent, setClientComponent] = useState<React.ComponentType | null>(null);
+
+  useEffect(() => {
+    if (compiledSource && !isServer()) {
+      // evaluateMDX1(compiledSource).then((Component) => {
+      //   setClientComponent(() => Component as unknown as React.ComponentType);
+      // });
+      // Создаем компонент из compiledSource на клиенте
+      run(compiledSource, {
+        ...runtime,
+      }).then(({ default: Component }) => {
+        setClientComponent(() => Component);
+      });
+    }
+  }, [compiledSource]);
 
   // Расширенные компоненты с CodeBlock
   const components = {
@@ -53,6 +61,13 @@ export function Page() {
     ),
   };
 
+  const MDXComponent = isServer() ? pageContext.ServerComponent : ClientComponent;
+
+  if (!MDXComponent) {
+    console.log(111, "oopss!", isServer());
+    return null; // или прелоадер
+  }
+
   return (
     <>
       <div className={s.wrap}>
@@ -62,7 +77,7 @@ export function Page() {
         <div className={s.wrap__right}>
           <div className="mdx-content">
             <MDXProvider components={components}>
-              {isServer() ? <pageContext.ServerComponent /> : <ComponentX />}
+              <MDXComponent />
             </MDXProvider>
           </div>
         </div>
