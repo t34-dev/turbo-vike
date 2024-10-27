@@ -26,7 +26,8 @@
     "jsx": "preserve",
     "jsxImportSource": "react",
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["./*"],
+      "@common": ["./assets/scss/common.scss"]
     }
   },
   "exclude": [
