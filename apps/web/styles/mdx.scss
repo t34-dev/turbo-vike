@@ -1,0 +1,106 @@
+@import 'katex/dist/katex.min.css';
+
+// Стили для блоков кода
+pre {
+  overflow-x: auto;
+  padding: 1rem;
+  margin: 1rem 0;
+  border-radius: 0.5rem;
+}
+
+code {
+  font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+}
+
+// Стили для таблиц
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+
+  th, td {
+    border: 1px solid #ddd;
+    padding: 0.75rem;
+    text-align: left;
+  }
+
+  th {
+    background-color: #f5f5f5;
+  }
+
+  tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+}
+
+// Стили для блоков цитат
+blockquote {
+  margin: 1rem 0;
+  padding: 1rem;
+  border-left: 4px solid #718096;
+  background-color: #f8f9fa;
+}
+
+// Стили для заголовков
+h1 {
+  font-size: 2.25rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+h2 {
+  font-size: 1.875rem;
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+  margin-top: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+// Стили для списков
+ul, ol {
+  margin: 1rem 0;
+  padding-left: 2rem;
+
+  li {
+    margin: 0.5rem 0;
+  }
+}
+
+// Стили для подсветки кода
+[data-line-numbers] {
+  counter-reset: line;
+}
+
+[data-line-numbers] > [data-line]::before {
+  counter-increment: line;
+  content: counter(line);
+  display: inline-block;
+  width: 1rem;
+  margin-right: 1rem;
+  text-align: right;
+  color: gray;
+}
+
+[data-highlighted-line] {
+  background-color: rgba(200, 200, 255, 0.1);
+  border-left: 2px solid #60a5fa;
+}
+
+[data-highlighted-chars] {
+  background-color: rgba(200, 200, 255, 0.2);
+  padding: 2px;
+  border-radius: 2px;
+}
+[data-rehype-pretty-code-figure]{
+  margin: 2rem 0;
+}
+
+// Стили для математических формул
+.math {
+  overflow-x: auto;
+  padding: 1rem 0;
+}

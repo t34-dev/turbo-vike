@@ -18,7 +18,7 @@ export default function LayoutDefault({ children }: { children: React.ReactNode 
       <div
         style={{
           display: "flex",
-          maxWidth: 1900,
+          maxWidth: 1400,
           margin: "auto",
         }}
       >

@@ -1,43 +1,46 @@
-// pages/docs/+Page.tsx
+// +Page.tsx
 import React from "react";
-import { usePageContext } from "vike-react/usePageContext";
 import metaData from "./content/en/_meta.json";
 import { RenderNavigation } from "@/pages/docs/render";
-import s from "./index.module.scss";
+import s from "./Page.module.scss";
+import type { MDXComponents } from "mdx/types"; // правильный импорт типов
+import Content from "./content/en/index.mdx";
+import "@/styles/mdx.scss";
+import "@/styles/code.scss";
+import { Counter } from "@/pages/index/Counter";
 
-// Предварительно импортируем все MDX файлы
-const mdxFiles = import.meta.glob("./content/**/*.mdx");
-
-export { Page };
+// Определяем компоненты с правильным типом
+const components: MDXComponents = {
+  h1: ({ children, ...props }) => (
+    <h1 className="text-3xl font-bold" {...props}>
+      {children}
+    </h1>
+  ),
+  h2: ({ children, ...props }) => (
+    <h2 className="text-2xl font-bold" {...props}>
+      {children}
+    </h2>
+  ),
+  Counter,
+};
 
 function Page() {
-  const pageContext = usePageContext();
-  const locale = pageContext.pageProps?.locale || "en";
-
-  // Удаляем '/docs' из начала пути
-  const contentPath = pageContext.urlLogical.replace(/^\/docs/, "") || "/index";
-
-  // Формируем путь к файлу
-  const filePath = `./content/${locale}${contentPath}.mdx`;
-
-  // Проверяем, существует ли файл
-  if (!mdxFiles[filePath]) {
-    return <div>404 - Page not found</div>;
-  }
-
-  // Динамический импорт MDX-контента
-  const MDXContent = React.lazy(() => mdxFiles[filePath]());
-
   return (
     <div className={s.wrap}>
       <div className={s.wrap__left}>
         <RenderNavigation meta={metaData} />
       </div>
       <div className={s.wrap__right}>
-        <React.Suspense fallback={<div>Loading...</div>}>
-          <MDXContent />
-        </React.Suspense>
+        <div className="wrap">
+          <div className="wrap__right">
+            <div className="mdx-content">
+              <Content components={components} />
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
 }
+
+export { Page };

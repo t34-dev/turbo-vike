@@ -1,0 +1,78 @@
+// styles/code.scss
+
+pre {
+  overflow-x: auto;
+  padding: 1rem;
+  margin: 0.5rem 0;
+  border-radius: 0.3rem;
+}
+
+pre > code {
+  display: block;
+  padding: 1rem;
+  font-family: 'Fira Code', 'Fira Mono', Menlo, Consolas, 'DejaVu Sans Mono', monospace;
+  font-size: 0.875rem; /* 14px */
+  line-height: 1.5;
+  direction: ltr;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  tab-size: 2;
+  hyphens: none;
+}
+
+/* Стили для линий подсветки */
+[data-line] {
+  padding: 0 1rem;
+  border-left: 2px solid transparent;
+}
+
+[data-highlighted-line] {
+  background: rgba(255, 255, 255, 0.1);
+  border-left: 2px solid #60a5fa;
+}
+
+[data-highlighted-chars] {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 2px;
+  border-radius: 2px;
+}
+
+/* Стили для нумерации строк */
+[data-line-numbers] {
+  counter-reset: line;
+}
+
+[data-line-numbers] > [data-line]::before {
+  counter-increment: line;
+  content: counter(line);
+  display: inline-block;
+  width: 1.5rem;
+  margin-right: 1rem;
+  text-align: right;
+  color: gray;
+}
+
+[data-rehype-pretty-code-figure] pre{
+  padding: 0;
+}
+/* Стили для заголовка с названием языка */
+[data-rehype-pretty-code-title] {
+  padding: 0.75rem 1rem;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #abb2bf;
+  background-color: #2e3440;
+  border-top-left-radius: 0.3rem;
+  border-top-right-radius: 0.3rem;
+  border-bottom: 1px solid #434c5e;
+}
+
+[data-rehype-pretty-code-title] + pre {
+  padding: 0;
+  margin-top: 0;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}

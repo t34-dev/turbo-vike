@@ -20,7 +20,8 @@
     "types": [
       "vite/client",
       "vike-react",
-      "./types/vike"
+      "./types/vike",
+      "mdx"
     ],
     "jsx": "preserve",
     "jsxImportSource": "react",
