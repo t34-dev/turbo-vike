@@ -6,6 +6,7 @@ import { useStore } from "@/store";
 import { Todo } from "@/pages/query/types";
 import { Data } from "@/pages/query/index/+data";
 import { useTypedTranslation } from "@/i18/useTypedTranslation";
+import { Button } from "ui";
 
 export default function Page() {
   const { t, formatDate, formatNumber, hasTranslation } = useTypedTranslation();
@@ -25,9 +26,7 @@ export default function Page() {
       <h1 className="text-2xl font-bold mb-4">React Query + Zustand</h1>
       <div className="mb-4">
         <p className="mb-2">Count: {count}</p>
-        <button onClick={increment} className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
-          Increment
-        </button>
+        <Button onClick={increment}>Increment</Button>
       </div>
       <div>
         {isLoading ? (

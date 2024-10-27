@@ -1,0 +1,55 @@
+{
+  "index": {
+    "title": "Introduction",
+    "theme": {
+      "layout": "full"
+    }
+  },
+  "guide": {
+    "title": "Guide",
+    "items": {
+      "getting-started": "Getting Started",
+      "installation": "Installation",
+      "configuration": "Configuration",
+      "deployment": "Deployment"
+    }
+  },
+  "features": {
+    "title": "Features",
+    "items": {
+      "core-concepts": "Core Concepts",
+      "routing": "Routing",
+      "state-management": "State Management",
+      "data-fetching": "Data Fetching",
+      "authentication": "Authentication"
+    }
+  },
+  "api": {
+    "title": "API Reference",
+    "items": {
+      "overview": "API Overview",
+      "endpoints": "Endpoints",
+      "authentication": "Authentication",
+      "error-handling": "Error Handling"
+    }
+  },
+  "tutorials": {
+    "title": "Tutorials",
+    "items": {
+      "basic-app": "Building a Basic App",
+      "advanced-app": "Creating an Advanced App",
+      "integration": "Integrating with Other Services"
+    }
+  },
+  "best-practices": {
+    "title": "Best Practices",
+    "items": {
+      "code-structure": "Code Structure",
+      "performance": "Performance Optimization",
+      "security": "Security Guidelines",
+      "testing": "Testing Strategies"
+    }
+  },
+  "faq": "FAQ",
+  "changelog": "Changelog"
+}

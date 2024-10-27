@@ -7,3 +7,165 @@ description: Comprehensive guides and documentation to help you start working wi
 
 ## Introduction
 TypeScript is a powerful superset of JavaScript that adds static typing. Let's explore some basic concepts.
+
+### Code Example - NEW
+```typescript title="example.ts"
+// This code can be copied
+const greeting = "Hello, World!";
+console.log(greeting);
+```
+
+```typescript
+// Regular code
+const example = "hello";
+```
+
+```typescript showLineNumbers {1,3-4} title="example.ts"
+// Code with line numbers and highlighting
+const x = 1;
+const y = 2;
+console.log(x + y);
+```
+
+```diff
+- const oldCode = "remove";
++ const newCode = "add";
+```
+
+### Code Example
+
+```typescript
+interface User {
+  id: number;
+  name: string;
+  email?: string; // Optional property
+}
+
+// Function with type annotations
+function greetUser(user: User): string {
+  return `Hello, ${user.name}!`;
+}
+
+// Example usage
+const newUser: User = {
+  id: 1,
+  name: "John Doe"
+};
+
+console.log(greetUser(newUser)); // Output: Hello, John Doe!
+```
+
+## Data Types Table
+
+| Type      | Example           | Description                   |
+|-----------|------------------|-------------------------------|
+| string    | "Hello"         | Text data                     |
+| number    | 42, 3.14        | Numeric values                |
+| boolean   | true/false      | Logical values                |
+| array     | [1, 2, 3]       | Ordered collection            |
+
+## Important Notes
+
+> 💡 TypeScript compiles into JavaScript, making it compatible with all JavaScript environments.
+
+### Features List
+- Type Inference
+- Interface Declaration
+- Optional Properties
+- Generic Types
+
+## Math Example
+Here's a simple math equation:
+
+$$ E = mc^2 $$
+
+# Inline Formulas
+Here's a formula within text: $E = mc^2$
+
+# Block Formulas
+$$
+\begin{equation}
+\frac{n!}{k!(n-k)!} = \binom{n}{k}
+\end{equation}
+$$
+
+# Complex Formulas
+$$
+\begin{align*}
+& \phi(x,y) = \phi \left(\sum_{i=1}^n x_ie_i, \sum_{j=1}^n y_je_j \right)
+= \sum_{i=1}^n \sum_{j=1}^n x_i y_j \phi(e_i, e_j) = \\
+& (x_1, \ldots, x_n) \left( \begin{array}{ccc}
+\phi(e_1,e_1) & \cdots & \phi(e_1,e_n) \\
+\vdots & \ddots & \vdots \\
+\phi(e_n,e_1) & \cdots & \phi(e_n,e_n)
+\end{array} \right)
+\left( \begin{array}{c}
+y_1 \\
+\vdots \\
+y_n
+\end{array} \right)
+\end{align*}
+$$
+
+## Component Example
+You can use React components directly in MDX:
+
+```tsx
+import { useState } from 'react'
+
+export function Counter() {
+  const [count, setCount] = useState(0)
+
+  return (
+    <button onClick={() => setCount(c => c + 1)}>
+      Count: {count}
+    </button>
+  )
+}
+```
+
+Here's how you would use it:
+
+<Counter />
+
+# Code Highlighting Example
+
+```javascript {1,3} /console.log/
+const x = 1;
+const y = 2;
+console.log(x + y);
+```
+
+In this example:
+- First and third lines will be highlighted (via `{1,3}`)
+- The word `console.log` will be additionally emphasized (via `/console.log/`)
+- "javascript" will be shown in the corner
+- github-dark theme will be applied
+- Lines will be separated by a grid
+
+You can customize styles for the `highlighted` and `word--highlighted` classes in your CSS to determine exactly how highlighted elements will appear.
+
+# Basic Example
+```js
+console.log('hello!')
+```
+
+# With Line Numbers and Highlighting
+```js showLineNumbers {3} title="example.js"
+const x = 1
+const y = 2
+console.log(x + y)
+```
+
+# With Line Range Highlighting Metadata
+```js {1,3-4}
+import lib from 'lib'
+const a = 1
+const b = 2
+console.log(a + b)
+```
+
+# With Word Highlighting
+```js /hello/
+console.log('hello!')
+```
