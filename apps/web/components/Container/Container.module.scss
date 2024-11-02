@@ -1,0 +1,42 @@
+@use '@common' as *;
+
+.container {
+  width: 100%;
+  margin: 0 auto;
+  padding-left: 3rem;
+  padding-right: 3rem;
+  max-width: 1420px;  // Максимальная ширина контента
+  box-sizing: border-box;
+
+  @include Media-Desktop-Big {
+    background: #0022ff;
+  }
+  @include Media-Desktop-Small {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+    background: red;
+  }
+
+  @include Media-Table-Big {
+    padding-left: 2rem;
+    padding-right: 2rem;
+    max-width: none;
+    background: #0022ff;
+  }
+
+  @include Media-Table-Small {
+    padding-left: 1.6rem;
+    padding-right: 1.6rem;
+    background: #00ff6f;
+  }
+
+  @include Media-Mobile-Big {
+    padding-left: 1.2rem;
+    padding-right: 1.2rem;
+  }
+
+  @include Media-Mobile-Small {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}

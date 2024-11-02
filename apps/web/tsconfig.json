@@ -27,7 +27,10 @@
     "jsxImportSource": "react",
     "paths": {
       "@/*": ["./*"],
-      "@common": ["./assets/scss/common.scss"]
+      "@assets/*": ["./assets/*"],
+      "@scss/*": ["./assets/scss/*"],
+      "@base": ["./assets/scss/base/index.scss"],
+      "@common": ["./assets/scss/common/index.scss"],
     }
   },
   "exclude": [

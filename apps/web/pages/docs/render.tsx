@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { Link } from "@/components/Link";
+import { Link } from "@/components/Link/Link";
 
 interface MetaItem {
   title: string;

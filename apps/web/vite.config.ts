@@ -37,7 +37,10 @@ export default defineConfig({
   resolve: {
     alias: {
       "@": resolve(__dirname, "./"),
-      "@common": resolve(__dirname, "./assets/scss/common.scss"),
+      "@assets": resolve(__dirname, "./assets"),
+      "@scss": resolve(__dirname, "./assets/scss"),
+      "@base": resolve(__dirname, "./assets/scss/base"),
+      "@common": resolve(__dirname, "./assets/scss/common"),
     },
   },
   server: {

@@ -1,0 +1,18 @@
+.header{
+    background: #ddd;
+    &__container{
+        display: flex;
+        gap: 1rem;
+        width: 100%;
+        height: 5rem;
+        align-items: center;
+    }
+    &__logo{}
+    &__user{
+        display: flex;
+        flex: 1 1 auto;
+        justify-content: flex-end;
+        gap: 2rem;
+        align-items: center;
+    }
+}

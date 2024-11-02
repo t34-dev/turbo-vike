@@ -1,0 +1,25 @@
+.wrap{
+  &__container{
+    display: flex;
+  }
+  &__left{
+    width: 25rem;
+    background: #ddd;
+    flex: 0 0 auto;
+  }
+  &__right{
+    padding: 2rem;
+  }
+}
+.logo{
+  padding: 2rem;
+  gap: 2rem;
+  display: flex;
+  justify-content: space-between;
+}
+.nav{
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.2rem;
+}

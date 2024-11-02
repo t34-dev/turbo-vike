@@ -16,11 +16,14 @@ importers:
         version: 18.2.0(react@18.2.0)
       vike:
         specifier: ^0.4.199
-        version: 0.4.199(react-streaming@0.3.43(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(vite@5.4.10(@types/node@22.8.1)(sass-embedded@1.80.4)(sass@1.80.4))
+        version: 0.4.199(react-streaming@0.3.43(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(vite@5.4.10(@types/node@22.8.1)(sass-embedded@1.80.4)(sass@1.80.4)(terser@5.36.0))
     devDependencies:
       prettier:
         specifier: ^3.2.5
         version: 3.3.3
+      shx:
+        specifier: ^0.3.4
+        version: 0.3.4
       turbo:
         specifier: ^2.2.1
         version: 2.2.3
@@ -12735,7 +12738,7 @@ snapshots:
       react-streaming: 0.3.43(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       vike: 0.4.199(react-streaming@0.3.43(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(vite@5.4.10(@types/node@22.8.1)(sass-embedded@1.80.4)(sass@1.80.4)(terser@5.36.0))
 
-  vike@0.4.199(react-streaming@0.3.43(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(vite@5.4.10(@types/node@22.8.1)(sass-embedded@1.80.4)(sass@1.80.4)):
+  vike@0.4.199(react-streaming@0.3.43(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(vite@5.4.10(@types/node@22.8.1)(sass-embedded@1.80.4)(sass@1.80.4)(terser@5.36.0)):
     dependencies:
       '@brillout/import': 0.2.3
       '@brillout/json-serializer': 0.5.13

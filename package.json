@@ -6,7 +6,8 @@
     "dev": "turbo dev",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "postinstall": "pnpm run -r install"
+    "postinstall": "pnpm run -r install",
+    "clear": "shx rm -rf ./**/*.node_modules/**/*"
   },
   "dependencies": {
     "react": "18.2.0",
@@ -16,7 +17,8 @@
   "devDependencies": {
     "prettier": "^3.2.5",
     "turbo": "^2.2.1",
-    "typescript": "^5.4.5"
+    "typescript": "^5.4.5",
+    "shx": "^0.3.4"
   },
   "packageManager": "pnpm@8.15.6",
   "engines": {

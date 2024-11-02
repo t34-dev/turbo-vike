@@ -1,6 +1,7 @@
 import React, { useRef, useEffect } from "react";
 import { usePageContext } from "vike-react/usePageContext";
 import { navigate } from "vike/client/router";
+import s from "./Link.module.scss";
 
 export function Link({ href, children }: { href: string; children: string }) {
   const {
@@ -36,7 +37,7 @@ export function Link({ href, children }: { href: string; children: string }) {
   };
 
   return (
-    <a href={fullHref} className={isActive ? "is-active" : undefined} onClick={handleClick}>
+    <a href={fullHref} className={isActive ? s.active : undefined} onClick={handleClick}>
       {children}
     </a>
   );

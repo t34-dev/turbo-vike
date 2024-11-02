@@ -25,7 +25,6 @@ const componentsDefault = {
 };
 
 export function Page() {
-  console.log("🔥 Page.server.tsx START", "isServer", isServer());
   const { language } = useTypedTranslation();
   const pageContext = usePageContext() as DocsPageContext;
   const { mdxCode } = pageContext.pageProps;
