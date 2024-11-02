@@ -4,8 +4,9 @@ import type { MDXRemoteSerializeResult } from "next-mdx-remote";
 
 export interface DocsPageProps {
   metadata?: { [p: string]: unknown };
-  mdxCode: MDXRemoteSerializeResult;
+  mdxCode?: MDXRemoteSerializeResult;
   locale: string;
+  error?: string;
 }
 
 export type DocsPageContext = PageContext & {

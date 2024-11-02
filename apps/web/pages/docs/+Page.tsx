@@ -27,7 +27,7 @@ const componentsDefault = {
 export function Page() {
   const { language } = useTypedTranslation();
   const pageContext = usePageContext() as DocsPageContext;
-  const { mdxCode } = pageContext.pageProps;
+  const { mdxCode, error } = pageContext.pageProps;
 
   // Расширенные компоненты с CodeBlock
   const components = {
@@ -39,6 +39,10 @@ export function Page() {
       </CodeBlock>
     ),
   };
+
+  if (!mdxCode) {
+    return <div>404 - {error}</div>;
+  }
 
   return (
     <>
