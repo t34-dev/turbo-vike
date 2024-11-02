@@ -13,6 +13,7 @@
     "@clerk/clerk-react": "^5.13.1",
     "@mdx-js/mdx": "^3.1.0",
     "@mdx-js/react": "^3.1.0",
+    "@rainbow-me/rainbowkit": "^2.2.0",
     "@tanstack/react-query": "^5.59.16",
     "@vitejs/plugin-react": "^4.3.3",
     "gray-matter": "^4.0.3",
@@ -31,9 +32,8 @@
     "ui": "workspace:*",
     "uuid": "^10.0.0",
     "vike-react": "^0.5.7",
-    "zustand": "^5.0.0",
     "wagmi": "^2.12.17",
-    "@rainbow-me/rainbowkit": "^2.2.0"
+    "zustand": "^5.0.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.13.0",
@@ -63,7 +63,8 @@
     "typescript": "^5.6.3",
     "typescript-eslint": "^8.10.0",
     "vike": "^0.4.199",
-    "vite": "^5.4.9"
+    "vite": "^5.4.9",
+    "vite-plugin-static-copy": "^2.0.0"
   },
   "type": "module"
 }

@@ -18,7 +18,7 @@ export const LayoutHeader = () => {
     <div className={s.header}>
       <Container className={s.header__container}>
         <div className={s.header__logo}>
-          <Link href="/">LOGO</Link>
+          <Link to="/">LOGO</Link>
           <Switcher2 />
         </div>
         <div className={s.header__user}>
@@ -28,7 +28,7 @@ export const LayoutHeader = () => {
             {!ready && <div>Loading...</div>}
           </div>
           {!user ? (
-            <Link href="/login">Login</Link>
+            <Link to="/login">Login</Link>
           ) : (
             <SignedIn>
               <div>

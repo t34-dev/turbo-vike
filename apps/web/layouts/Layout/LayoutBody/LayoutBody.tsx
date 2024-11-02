@@ -18,17 +18,19 @@ export const LayoutBody: FC<PropsWithChildren> = ({ children }) => {
             </a>
           </div>
           <div className={s.nav}>
-            <Link href="/">Welcome</Link>
-            <Link href="/todo">Todo</Link>
-            <Link href="/star-wars">Data Fetching</Link>
-            <Link href="/login">Login</Link>
-            <Link href="/query">Query</Link>
-            <Link href="/lang">Lang</Link>
-            <Link href="/profile">Profile</Link>
-            <Link href="/docs">Docs</Link>
+            <Link to="/">Welcome</Link>
+            <Link to="/todo">Todo</Link>
+            <Link to="/star-wars">Data Fetching</Link>
+            <Link to="/login">Login</Link>
+            <Link to="/query">Query</Link>
+            <Link to="/lang">Lang</Link>
+            <Link to="/profile">Profile</Link>
+            <Link to="/docs">Docs</Link>
           </div>
         </div>
-        <div className={s.wrap__right}>{children}</div>
+        <div id="page-content" className={s.wrap__right}>
+          {children}
+        </div>
       </Container>
     </div>
   );

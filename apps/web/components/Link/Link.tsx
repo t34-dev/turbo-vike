@@ -1,9 +1,12 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, PropsWithChildren, FC } from "react";
 import { usePageContext } from "vike-react/usePageContext";
 import { navigate } from "vike/client/router";
 import s from "./Link.module.scss";
+interface LinkProps {
+  to: string;
+}
 
-export function Link({ href, children }: { href: string; children: string }) {
+export const Link: FC<PropsWithChildren<LinkProps>> = ({ to, children }) => {
   const {
     urlPathname,
     pageProps: { locale },
@@ -12,12 +15,12 @@ export function Link({ href, children }: { href: string; children: string }) {
   const prevPathnameRef = useRef<string | null>(null);
 
   const normalizedPathname = urlPathname.replace(/\/+$/, "");
-  const normalizedHref = href.replace(/\/+$/, "");
+  const normalizedHref = to.replace(/\/+$/, "");
   const isActive = normalizedHref === normalizedPathname;
 
-  let fullHref = href;
+  let fullHref = to;
   if (locale && locale !== "en") {
-    fullHref = `/${locale}${href}`;
+    fullHref = `/${locale}${to}`;
   }
 
   useEffect(() => {
@@ -41,4 +44,4 @@ export function Link({ href, children }: { href: string; children: string }) {
       {children}
     </a>
   );
-}
+};

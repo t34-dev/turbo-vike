@@ -10,6 +10,7 @@ import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
 import rehypePrism from "rehype-prism-plus";
 import rehypeCodeTitles from "rehype-code-titles";
+import { viteStaticCopy } from "vite-plugin-static-copy";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -31,6 +32,14 @@ export default defineConfig({
             aliases: {}, // алиасы для языков
           },
         ],
+      ],
+    }),
+    viteStaticCopy({
+      targets: [
+        {
+          src: "pages/docs/content/**/*",
+          dest: "entries/content",
+        },
       ],
     }),
   ],
