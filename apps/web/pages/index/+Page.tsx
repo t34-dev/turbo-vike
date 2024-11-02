@@ -1,5 +1,6 @@
 import React from "react";
 import { Counter } from "./Counter.js";
+import { Button } from "@mantine/core";
 
 export default function Page() {
   return (
@@ -12,6 +13,12 @@ export default function Page() {
           Interactive. <Counter />
         </li>
       </ul>
+      <hr />
+      <Button>Test</Button>
+      <br />
+      <Button variant="filled" size="md" radius="xl">
+        Button
+      </Button>
     </>
   );
 }

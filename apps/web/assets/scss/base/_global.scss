@@ -20,26 +20,21 @@ body {
 	min-height: 100vh;
 }
 
-:global {
-	::-webkit-scrollbar {
-		width: 12px;
-		background-color: transparent;
-	}
+::-webkit-scrollbar {
+	width: 12px;
+	background-color: transparent;
+}
 
-	::-webkit-scrollbar-thumb {
-		background-color: rgba(0, 0, 0, 0.2);
-		border-radius: 6px;
-	}
+::-webkit-scrollbar-thumb {
+	background-color: rgba(0, 0, 0, 0.2);
+	border-radius: 6px;
+}
 
-	::-webkit-scrollbar-track {
-		background-color: transparent;
-	}
+::-webkit-scrollbar-track {
+	background-color: transparent;
+}
 
 
-	iframe {
-		background-color: #130d18 !important;
-	}
-	a {
-		color: red !important;
-	}
+iframe {
+	background-color: #130d18 !important;
 }

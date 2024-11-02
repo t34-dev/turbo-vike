@@ -5,6 +5,7 @@ import { I18nProvider } from "./i18-provider";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
 import { WgmProvider } from "@/components/providers/wagmi-provider";
 import { RainbowKitProvider } from "@rainbow-me/rainbowkit";
+import { MantineProvider } from "@/components/providers/ui-provider";
 
 export function RootProvider({ children }: { children: React.ReactNode }) {
   return (
@@ -13,7 +14,9 @@ export function RootProvider({ children }: { children: React.ReactNode }) {
         <WgmProvider>
           <QueryProvider>
             <RainbowKitProvider>
-              <I18nProvider>{children}</I18nProvider>
+              <I18nProvider>
+                <MantineProvider>{children}</MantineProvider>
+              </I18nProvider>
             </RainbowKitProvider>
           </QueryProvider>
         </WgmProvider>

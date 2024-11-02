@@ -1,3 +1,4 @@
+import "@mantine/core/styles.css";
 import "@scss/main.scss";
 import "./style.css";
 import s from "./Layout.module.scss";

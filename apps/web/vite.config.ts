@@ -72,4 +72,7 @@ export default defineConfig({
       },
     },
   },
+  ssr: {
+    noExternal: ["@mantine/core", "@mantine/hooks"],
+  },
 });
