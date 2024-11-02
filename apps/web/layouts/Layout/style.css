@@ -1,9 +1,26 @@
 /* Page Transition Animation */
 #page-content {
   opacity: 1;
-  transition: opacity 0.3s ease-in-out;
+  transition: opacity 0.2s ease-in-out;
 }
+
+.page-transition-loader {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+  z-index: 1000;
+}
+
 body.page-is-transitioning #page-content {
   opacity: 0;
+}
+
+body.page-is-transitioning .page-transition-loader {
+  opacity: 1;
+  visibility: visible;
 }
 

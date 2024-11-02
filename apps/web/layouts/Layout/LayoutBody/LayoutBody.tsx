@@ -3,6 +3,7 @@ import s from "./LayoutBody.module.scss";
 import { Container } from "@/components/Container/Container";
 import logoUrl from "@assets/logo.svg";
 import { Link } from "@/components/Link/Link";
+import { Loader } from "@mantine/core";
 
 export const LayoutBody: FC<PropsWithChildren> = ({ children }) => {
   return (
@@ -28,8 +29,11 @@ export const LayoutBody: FC<PropsWithChildren> = ({ children }) => {
             <Link to="/docs">Docs</Link>
           </div>
         </div>
-        <div id="page-content" className={s.wrap__right}>
-          {children}
+        <div className={s.wrap__right}>
+          <div className="page-transition-loader">
+            <Loader color="blue" size="xl" />
+          </div>
+          <div id="page-content">{children}</div>
         </div>
       </Container>
     </div>
