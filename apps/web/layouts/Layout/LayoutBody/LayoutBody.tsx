@@ -26,7 +26,7 @@ export const LayoutBody: FC<PropsWithChildren> = ({ children }) => {
             <Link to="/query">Query</Link>
             <Link to="/lang">Lang</Link>
             <Link to="/profile">Profile</Link>
-            <Link to="/docs">Docs</Link>
+            {/*<Link to="/docs">Docs</Link>*/}
           </div>
         </div>
         <div className={s.wrap__right}>
